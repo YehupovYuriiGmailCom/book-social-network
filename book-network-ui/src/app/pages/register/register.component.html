@@ -1,0 +1,35 @@
+<div class="container-fluid cart login-container">
+  <h3 class="text-center">Create an account</h3>
+  <hr>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMsg.length">
+    <p *ngFor="let msg of errorMsg">{{ msg }}</p>
+  </div>
+  <div class="mb-3">
+    <label for="firstname" class="form-label"> First name</label>
+    <input [(ngModel)]="resiterRequest.firstname" type="email" class="form-control" id="firstname" placeholder="John">
+  </div>
+  <div class="mb-3">
+    <label for="lastname" class="form-label"> Last name</label>
+    <input [(ngModel)]="resiterRequest.lastname" type="email" class="form-control" id="lastname" placeholder="Doe">
+  </div>
+  <div class="mb-3">
+    <label for="login" class="form-label"> Email address</label>
+    <input [(ngModel)]="resiterRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input [(ngModel)]="resiterRequest.password" type="password" class="form-control" id="password" placeholder="password">
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <button (click)="register()" type="button" class="btn btn-link">
+      <em class="fas fa-sign-in-alt">&nbsp;Resigter</em>
+    </button>
+    <div>
+      Already have an account?&nbsp;
+      <button (click)="login()" type="button" class="btn btn-link">
+        Log in
+      </button>
+    </div>
+  </div>
+</div>
