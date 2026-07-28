@@ -16,9 +16,7 @@ spring:
   mail:
     host: ${EMAIL_HOSTNAME}
     port: 465
-#    username: yehupov.yurii@gmail.com
     username: ${EMAIL_USER_NAME}
-#    password: fhfo zxct oczn vchs
     password: ${EMAIL_PASSWORD}
     protocol: smtp
     properties:
