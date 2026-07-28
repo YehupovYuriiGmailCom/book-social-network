@@ -18,10 +18,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup JDK
-        uses: actions/setup-java
+        uses: actions/setup-java@v4
         with:
           java-version: 17
-          distrubution: 'corretto'
+          distribution: 'corretto'
       - name: Compile project
         run: |
           cd book-network
@@ -37,10 +37,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup JDK
-        uses: actions/setup-java
+        uses: actions/setup-java@v4
         with:
           java-version: 17
-          distrubution: 'corretto'
+          distribution: 'corretto'
       - name: Running unit Tests
         run: |
           cd book-network
@@ -56,10 +56,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup JDK
-        uses: actions/setup-java
+        uses: actions/setup-java@v4
         with:
           java-version: 17
-          distrubution: 'corretto'
+          distribution: 'corretto'
       - name: Build project
         run: |
           cd book-network
@@ -75,10 +75,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup JDK
-        uses: actions/setup-java
+        uses: actions/setup-java@v4
         with:
           java-version: 17
-          distrubution: 'corretto'
+          distribution: 'corretto'
       - name: Build project
         run: |
           cd book-network
@@ -112,6 +112,8 @@ jobs:
     runs-on: self-hosted
     needs: [build-image]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Create Deployment Folder
         run: ssh ${{secrets.VPS_USERNAME}}@${{secrets.VPS_IP}} "mkdir -p ci-cd"
 
@@ -121,9 +123,9 @@ jobs:
       - name: Set ENV variable and deploy
         run: |
           ssh ${{secrets.VPS_USERNAME}}@${{secrets.VPS_IP}} <<EOF
-          export EMAIL_HOSTNAME = ${{ secrets.EMAIL_HOSTNAME }}
-          export EMAIL_USER_NAME = ${{ secrets.EMAIL_USER_NAME }}
-          export EMAIL_PASSWORD = ${{ secrets.EMAIL_PASSWORD }}
+          export EMAIL_HOSTNAME="${{ secrets.EMAIL_HOSTNAME }}"
+          export EMAIL_USER_NAME="${{ secrets.EMAIL_USER_NAME }}"
+          export EMAIL_PASSWORD="${{ secrets.EMAIL_PASSWORD }}"
           cd ci-cd 
           docker-compose -f docker-compose.yml pull -q
           docker-compose -f docker-compose.yml up -d
