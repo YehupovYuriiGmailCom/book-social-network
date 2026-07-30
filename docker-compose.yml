@@ -9,8 +9,6 @@ services:
       POSTGRES_DB: book_social_network
     volumes:
       - postgres:/data/postgres
-    ports:
-      - 5432:5432
     networks:
       - spring-demo
     restart: unless-stopped
