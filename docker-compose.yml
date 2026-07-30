@@ -12,12 +12,14 @@ services:
     networks:
       - spring-demo
     restart: unless-stopped
+
   mail-dev:
     container_name: mail-dev-bsn
     image: maildev/maildev
     ports:
       - 1080:1080
       - 1025:1025
+
   bsn-api:
     container_name: bsn-api
     image: ${DOCKERHUB_USERNAME}/bsn-api:latest
@@ -31,9 +33,10 @@ services:
       - spring-demo
     depends_on:
       - postgres
+
   bsn-ui:
     container_name: bsn-ui
-    image: bsn/bsn-ui:1.0.0
+    image: ${DOCKERHUB_USERNAME}/bsn-ui:latest
     ports:
       - 8080:80
     networks:
