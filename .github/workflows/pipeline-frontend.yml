@@ -82,7 +82,7 @@ jobs:
             docker compose --env-file .env pull bsn-ui
             docker compose --env-file .env up -d bsn-ui
             for attempt in $(seq 1 18); do
-              if curl --fail --silent http://localhost > /dev/null; then
+              if curl --fail --silent http://localhost:8081 > /dev/null; then
                 exit 0
               fi
               sleep 5
